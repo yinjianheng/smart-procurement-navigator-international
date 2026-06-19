@@ -1,106 +1,133 @@
-# Smart Procurement Navigator
+# 🏛️ Smart Procurement Navigator v2.0.0
 
-> Version: 2.0.0
-> Current Objective: Achieve a full-chain closed loop covering "Upload Procurement Documents / Technical Specifications -> Build Evaluation Model -> Output Response Proposal Architecture -> Produce Chapter Drafts -> Complete Compliance Review".
+[![Version](https://img.shields.io/badge/version-2.0.0-blue)](https://github.com/yinjianheng/smart-procurement-navigator-international)
+[![License](https://img.shields.io/badge/license-Personal%20Use%20Only-red)](./LICENSE)
+[![Author](https://img.shields.io/badge/author-yinjianheng-orange)](https://github.com/yinjianheng)
+[![Platform](https://img.shields.io/badge/platform-WuKong%20%7C%20Claude%20%7C%20OpenClaw-brightgreen)](https://github.com/yinjianheng)
 
-## 1. System Positioning
+> **AI-Powered Bid & Tender Management Assistant | Opportunity Discovery → Bid Assessment → Proposal Writing → Compliance Review | 12-Step End-to-End Pipeline**
+>
+> Dual-track coverage: China Government Procurement Law & Bidding Law + International (World Bank, ADB, FIDIC, UNCITRAL) procurement frameworks
 
-Smart Procurement Navigator is an intelligent procurement collaboration system for marketing, commercial, proposal, bid preparation, and business decision-making teams. It spans the complete business chain from opportunity assessment, evaluation modeling, response architecture design, chapter writing, to pre-submission quality assurance, adapting to various procurement and bidding projects under the framework of the *Government Procurement Law of the People's Republic of China* and the *Bidding and Tendering Law of the People's Republic of China*.
+---
 
-| Capability Module | Objective |
-| --- | --- |
-| Opportunity Identification | Receive procurement announcements or information sources, output opportunity summaries and key deadline alerts |
-| Bid Feasibility Assessment | Evaluate qualification conditions, track record, budget, delivery capability, and competitive risks |
-| Procurement Document Interpretation | Extract qualification thresholds, evaluation methods, submission specifications, and disqualification clauses |
-| Material Structuring | Convert procurement documents, technical specifications, reference files, and knowledge bases into searchable text |
-| Evaluation Model Construction | Distinguish disqualification clauses, scoring items, objective scoring materials, and response chapter mapping |
-| Bid Task Decomposition | Output material checklists, responsible persons, deadlines, and collaboration nodes |
-| Response Proposal Architecture Design | Output pre-index tables, full chapter outlines, chapter anchors, and page planning |
-| Response Draft Generation | Produce chapter drafts based on evaluation items, technical specifications, and knowledge bases |
-| Draft Polishing and Visual Enhancement | Remove templated expressions and internal strategy terms, and output chart placeholder indexes |
-| Compliance Review | Check for missing items, formatting, deviations, key data, reference residuals, and disqualification risks |
-| Final Submission Review | Final consistency verification and seal/signature check before submission |
-| Experience Accumulation and Knowledge Reuse | Extract root causes of winning/losing bids, and accumulate reusable materials and strategies |
+## 🎯 Why This Skill?
 
-## 2. File Structure
+| Pain Point | Solution |
+|------------|----------|
+| 📄 Hundreds of pages in tender docs — hard to extract key info | **Intelligent Parsing**: Auto-extract qualification thresholds, evaluation criteria, disqualification clauses |
+| 📊 Complex scoring systems — unclear where to focus effort | **Evaluation Model Builder**: Distinguish knock-out criteria vs. scoring items, map to response chapters |
+| ✍️ Proposal writing takes weeks, quality varies wildly | **AI-Assisted Drafting**: Generate chapter drafts from evaluation criteria + technical specs |
+| ⚠️ High rejection risk — one oversight can cost the entire bid | **Compliance Review**: 30+ common rejection causes auto-detected, pre-submission clearance |
+| 📅 Multiple deadlines — easy to miss critical dates | **Deadline Alerts**: 20+ key timeline milestones auto-tracked |
 
-```text
-smart-procurement-navigator/
-  README.md
-  agent.yaml
-  system_prompt.md
-  workflows.md
-  runbook.md
-  skills/
-    procurement_skills.yaml
-  knowledge/
-    README.md
-  templates/
-    opportunity_brief.md
-    tender_analysis_report.md
-    score_model.md
-    response_outline.md
-    service_scheme_structure.md
-    review_report.md
-    consistency_check_report.md
-  test_cases/
-    p0_demo_cases.md
-  demo/
-    demo_script.md
+---
+
+## 🚀 Core Capability Matrix
+
+| # | Stage | Capability | Output |
+|---|-------|------------|--------|
+| 1 | 🎯 Opportunity Identification | Smart parsing of procurement notices | Opportunity brief + deadline alerts |
+| 2 | 📋 Bid Feasibility Assessment | 4-dimension evaluation: qualifications / track record / budget / competition | Bid feasibility report |
+| 3 | 🔍 Document Interpretation | Extract qualification thresholds, evaluation methods, disqualification clauses | Structured interpretation report |
+| 4 | 🗂️ Material Structuring | Procurement docs → searchable text | Structured knowledge base |
+| 5 | 📊 Evaluation Modeling | Knock-out vs. scoring vs. objective scoring | Scoring model + response mapping |
+| 6 | 📝 Task Decomposition | Material checklist + responsible person + deadline | Bid task checklist |
+| 7 | 🏗️ Architecture Design | Pre-index + chapter outline + page planning | Response proposal architecture |
+| 8 | ✍️ Draft Generation | Generate from evaluation items + technical specs | Chapter drafts |
+| 9 | 🎨 Polish & Enhancement | De-template + chart placeholder index | Polished drafts |
+| 10 | ✅ Compliance Review | Missing items / formatting / deviations / rejection risks | Compliance review report |
+| 11 | 🔒 Final Submission Review | Consistency verification + seal/signature check | Final clearance checklist |
+| 12 | 📚 Knowledge Reuse | Root cause analysis of wins/losses | Reusable material library |
+
+---
+
+## 🌍 International Procurement Coverage
+
+| Framework | Coverage |
+|-----------|----------|
+| 🇨🇳 China | Government Procurement Law, Bidding and Tendering Law, 2024 State Council Doc No. 21 |
+| 🌐 World Bank | Procurement Regulations for IPF Borrowers, Standard Procurement Documents (SPDs) |
+| 🏦 ADB | Procurement Policy, Standard Bidding Documents |
+| 🏗️ FIDIC | Red Book / Yellow Book / Silver Book contract conditions |
+| 🇺🇳 UNCITRAL | Model Law on Public Procurement |
+| 🇪🇺 EU | EU Public Procurement Directives (2014/24/EU) |
+| 🇺🇸 US | FAR (Federal Acquisition Regulation), DFARS |
+
+---
+
+## 📦 Quick Start
+
+```bash
+# Install for WuKong / Claude / OpenClaw
+cp -r smart-procurement-navigator-international ~/.claude/skills/
+
+# Trigger: just describe your need
+"Analyze this World Bank tender notice"
+"Extract qualification requirements from this RFP"
+"Build an evaluation model for this bid"
+"Run a compliance review on my proposal"
 ```
 
-## 3. Core Closed Loop
+---
 
-```text
-User uploads procurement announcement or procurement documents
-  -> Identify basic project information
-  -> Extract qualification thresholds and evaluation criteria
-  -> Build evaluation scoring model and no-deviation index
-  -> Output bid task checklist
-  -> Output complete response proposal chapter structure and chapter drafts
-  -> Output draft polishing and compliance review opinions
-  -> Output pre-submission final review clearance checklist
+## 🏆 Key Highlights
+
+- **Dual-Track Compliance**: China procurement laws + international frameworks (World Bank, ADB, FIDIC, UNCITRAL, EU, US FAR)
+- **Full Evaluation Methods**: Comprehensive Scoring (Fixed Score / Interval / Rank-Based) + Price Score Anomaly Detection
+- **E-Procurement Ready**: Remote cross-location evaluation, e-signature CA mutual recognition
+- **Rejection Prevention**: 30+ common rejection causes with avoidance strategies
+- **Remedy Mechanisms**: Three-tier challenge/complaint/appeal system (7→15→60 day limits)
+- **SME Preferences**: Consortium bidding, prequalification vs. post-qualification, double envelope
+
+---
+
+## 📁 File Structure
+
+```
+smart-procurement-navigator-international/
+├── SKILL.md                    # Core skill file
+├── README.md                   # This file
+├── agent.yaml / system_prompt.md / workflows.md / runbook.md
+├── skills/procurement_skills.yaml
+├── knowledge/README.md
+├── templates/                  # 7 professional templates
+│   ├── opportunity_brief.md
+│   ├── tender_analysis_report.md
+│   ├── score_model.md
+│   ├── response_outline.md
+│   ├── service_scheme_structure.md
+│   ├── review_report.md
+│   └── consistency_check_report.md
+├── test_cases/p0_demo_cases.md
+└── demo/demo_script.md
 ```
 
-## 4. Key Boundaries
+---
 
-- This system can produce analysis reports, checklists, outlines, drafts, and review opinions.
-- This system cannot replace the bid decision-maker in making final bidding decisions.
-- Quotations, commitments, seals/signatures, qualification authenticity verification, and final response documents must be confirmed by a human.
-- When involving customer names, amounts, qualifications, and past performance, display and archive must follow permission rules.
-- Internal evaluation strategy expressions, exaggerated wording, and reference project residuals must not be retained in formal response documents.
-- Comply with the provisions on fair competition and information disclosure in the *Government Procurement Law of the People's Republic of China*.
+## 🔗 Related Skills
 
+| Skill | Focus | Repository |
+|-------|-------|------------|
+| [sa-pro-workbench-international](https://github.com/yinjianheng/sa-pro-workbench-international) | Solution Architect Workbench | Architecture · Diagrams · Bidding |
+| [ba-workbench-international](https://github.com/yinjianheng/ba-workbench-international) | Business Analysis Workbench | Strategy · Financial Modeling · Business Case |
+| [it-consulting-workbench-international](https://github.com/yinjianheng/it-consulting-workbench-international) | IT Consulting Workbench | IT Strategy · Digital Transformation · Tech DD |
 
-## v2.0.0 New Additions (2026-06-16)
+> 💡 **Chinese Edition**: [smart-procurement-navigator](https://github.com/yinjianheng/smart-procurement-navigator) — China-focused bidding AI assistant
 
-### Legal and Regulatory Framework
-- *Bidding and Tendering Law of the People's Republic of China* and its Implementation Regulations
-- *Government Procurement Law of the People's Republic of China* and its Implementation Regulations
-- 2024 State Council Document No. 21: *Opinions on Innovating and Improving Institutional Mechanisms to Promote Standardized and Healthy Development of the Bidding and Tendering Market*
-- 2025 New Regulations on Remote Cross-Location Evaluation
+---
 
-### Full Process — 7 Major Stages Explained
-Tendering → Bidding → Bid Opening → Bid Evaluation → Award Decision → Contract Signing → Contract Performance
+## 📄 License
 
-### Bid Evaluation Method System
-- Three approaches under the Comprehensive Scoring Method (Fixed Score Method, Interval Scoring Method, Rank-Based Scoring Method)
-- Compliance analysis
-- Abnormal price score identification and response strategies
+**Notice**: This Skill is a personal open-source project for personal learning, research, and non-commercial use only. Any form of commercial use (including but not limited to resale, bundled sales, commercial training, SaaS-based services) is strictly prohibited without the author's written authorization. The author has retained a professional IP legal team for global monitoring; infringement will be prosecuted.
 
-### Electronic Bidding Platform Adaptation
-- Remote cross-location evaluation: primary/secondary venue mechanism
-- Electronic seal/signature CA mutual recognition
-- Remote cross-location evaluation expert selection rules
+---
 
-### In-Depth Guide to Bid Document Preparation
-- Commercial bid / Technical bid / Price bid volume preparation specifications
-- Common bid rejection causes and avoidance strategies (30+)
-
-### Remedy Mechanisms
-- Three-tier challenge/complaint/appeal system (7→15→60 day time limits)
-- SME preferential policies
-- Consortium bidding specifications
-- Prequalification vs Post-qualification
-- Double envelope process
-- 20+ key deadline summary
+<p align="center">
+  <b>👨‍💻 yinjianheng (Yin Jianheng)</b> &nbsp;|&nbsp;
+  📧 yinjianheng@foxmail.com &nbsp;|&nbsp;
+  💬 WeChat: YJH-yinjianheng
+</p>
+<p align="center">
+  <sub>⭐ If this Skill helps you, please give it a Star to help others discover it!</sub>
+</p>
